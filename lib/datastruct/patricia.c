@@ -144,7 +144,7 @@ compare(const struct pnode * n, const uint8_t * key, size_t keylen,
 	for (i = 0; i < n->slen; i++) {
 		/* Is the key a prefix of the node? */
 		if (keylen == i) {
-			*mlen = i;
+			*mlen = i & 0xff;
 			*mask = 0;
 			return (1);
 		}
@@ -163,7 +163,7 @@ compare(const struct pnode * n, const uint8_t * key, size_t keylen,
 		}
 
 		/* There are i matching bytes. */
-		*mlen = i;
+		*mlen = i & 0xff;
 
 		/* The key doesn't match the node. */
 		return (1);
