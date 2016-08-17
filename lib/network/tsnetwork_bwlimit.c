@@ -199,9 +199,9 @@ network_bwlimit_get(int op, size_t * len)
 
 	/* Return the appropriate value. */
 	if (op == NETWORK_OP_READ)
-		*len = limit_read.bucket;
+		*len = (size_t)(limit_read.bucket + 0.5);
 	else
-		*len = limit_write.bucket;
+		*len = (size_t)(limit_write.bucket + 0.5);
 
 	/*
 	 * If the allowed bandwidth is less than one normal-sized TCP segment,
